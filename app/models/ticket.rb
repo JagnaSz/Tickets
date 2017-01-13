@@ -5,5 +5,6 @@ class Ticket < ActiveRecord::Base
   validates :email_address, presence: true, format: { with: VALID_EMAIL_REGEX }
   validates :price, presence: true
   validates :seat_id_seq, length: {minimum: 2, maximum: 4}, presence: true
+  validates :phone, length: { is: 9 }, presence: true
 end
 
