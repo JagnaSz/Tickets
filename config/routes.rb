@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
-  get 'events/index'
-
-  get 'events/new'
-
-  get 'events/create'
+  # get 'events/index'
+  #
+  # get 'events/new'
+  #
+  # get 'events/create'
+  resources :events, :only => [:index, :new, :create]
 
   resources :tickets
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root :to => "tickets#index"
+  #root :to => "tickets#index"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
