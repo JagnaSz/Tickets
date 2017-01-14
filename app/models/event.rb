@@ -10,8 +10,6 @@ class Event < ActiveRecord::Base
   validates :event_date, future: true, presence: true
 
 
-
-
   has_many :tickets
 
 end
