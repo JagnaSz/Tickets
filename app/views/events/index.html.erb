@@ -7,11 +7,12 @@
   <tr>
     <th>Artist</th>
     <th>Description</th>
-    <th>Price low</th>
-    <th>Price high</th>
+    <th>Prices</th>
     <th>Event date</th>
     <th>Sold Tickets count</th>
-    <th colspan="3"></th>
+    <th>Seats count</th>
+    <th>For adults?</th>
+    <th colspan="4"></th>
   </tr>
   </thead>
 
@@ -20,14 +21,19 @@
       <tr>
         <td><%= event.artist %></td>
         <td><%= event.description %></td>
-        <td><%= event.price_low %></td>
-        <td><%= event.price_high %></td>
+        <td><%= event.price_low %> - <%= event.price_high %></td>
         <td><%= event.event_date %></td>
         <td><%= event.tickets.count %></td>
+        <td><%= event.seats_number %></td>
+        <td><%= event.for_adults %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
+
 
 <%= link_to 'Nowy Event', new_event_path %>
 

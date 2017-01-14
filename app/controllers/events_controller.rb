@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
+
   def index
     @events = Event.all
   end
@@ -11,18 +13,48 @@ class EventsController < ApplicationController
 
     @event = Event.new(event_params)
     if @event.save
-    flash[:komunikat] = 'Event został poprawnie stworzony.'
-    redirect_to events_path
+      flash[:komunikat] = 'Event został poprawnie stworzony.'
+      redirect_to events_path
     else
       render :action => "new"
     end
   end
 
+  def edit
+  end
+
+# PATCH/PUT /events/1
+# PATCH/PUT /events/1.json
+  def update
+    respond_to do |format|
+      if @event.update(event_params)
+        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.json { render :show, status: :ok, location: @event }
+      else
+        format.html { render :edit }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+# DELETE /tickets/1
+# DELETE /tickets/1.json
+  def destroy
+    @event.destroy
+    respond_to do |format|
+      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 
   private
 
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
   def event_params
-    params.require(:event).permit(:artist, :description, :price_low, :price_high, :event_date)
+    params.require(:event).permit(:artist, :description, :price_low, :price_high, :event_date, :for_adults, :seats_number)
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113163234) do
+ActiveRecord::Schema.define(version: 20170114180653) do
 
   create_table "events", force: :cascade do |t|
     t.string   "artist"
@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 20170113163234) do
     t.decimal  "price_low"
     t.decimal  "price_high"
     t.datetime "event_date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "for_adults",   default: false
+    t.integer  "seats_number"
   end
 
   create_table "tickets", force: :cascade do |t|

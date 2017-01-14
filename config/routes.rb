@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # get 'events/new'
   #
   # get 'events/create'
-  resources :events, :only => [:index, :new, :create]
+  resources :events
 
   resources :tickets
   # The priority is based upon order of creation: first created -> highest priority.

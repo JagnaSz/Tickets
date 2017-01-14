@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @event.artist %>
+</p>
+
+<p>
+  <strong>Event date:</strong>
+  <%= @event.event_date %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+
+<p>
+  <strong>Prices:</strong>
+  <%= @event.price_low %> - <%= @event.price_high %>
+</p>
+
+<p>
+  <strong>Seats count:</strong>
+  <%= @event.seats_number %>
+</p>
+
+<p>
+  <strong>For adults?:</strong>
+  <%= @event.for_adults %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
