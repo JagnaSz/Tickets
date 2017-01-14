@@ -11,6 +11,8 @@
       <th>Price</th>
       <th>Email address</th>
       <th>Phone</th>
+      <th>Age</th>
+      <th>Number of bought tickets</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,6 +26,8 @@
         <td><%= ticket.price %></td>
         <td><%= ticket.email_address %></td>
         <td><%= ticket.phone %></td>
+        <td><%= ticket.age %></td>
+        <td><%= ticket.tickets_number %></td>
         <td><%= link_to 'Show', ticket %></td>
         <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
         <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
