@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
 
   before_save { email.downcase! }
 
-  validates :name,  presence: true, length: { maximum: 50 }
-  validates :last_name,  presence: true, length: { maximum: 50 }
+  validates :name,length: { minimum: 3, maximum: 50 }, presence: true
+  validates :last_name, length: { minimum: 3, maximum: 50 },  presence: true
   validates :email, presence: true,  length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX },  uniqueness: true
   validates :age, :numericality => { :greater_than => 0, :less_than_or_equal_to => 100 }, presence: true
 
