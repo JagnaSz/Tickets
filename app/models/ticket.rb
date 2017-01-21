@@ -7,7 +7,7 @@ class Ticket < ActiveRecord::Base
   validates :seat_id_seq, length: {minimum: 2, maximum: 4}, presence: true
   validates :phone, length: { is: 9 }, presence: true
   validates :age, :numericality => { :greater_than => 0, :less_than_or_equal_to => 100 }, presence: true
-  validates :tickets_number, :numericality => { :greater_than => 0, :less_than_or_equal_to => 5 }
+  validates :tickets_number, :numericality => { :greater_than => 0, :less_than_or_equal_to => 6 }
 
   belongs_to :event
   belongs_to :user

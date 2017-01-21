@@ -39,13 +39,20 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new(ticket_params)
     @ticket.user_id = current_user.id
     respond_to do |format|
-      if @ticket.save
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
-        format.json { render :show, status: :created, location: @ticket }
+      puts(@ticket.event_id)
+      if more_than_six_tickets?(@ticket.event_id, current_user.id, @ticket.tickets_number)
+        format.html { redirect_to new_ticket_url, :alert => "Nie możesz kupić więcej niż 5 biletów na to wydarzenie! Masz już #{@current_sum} biletów" }
+        format.json { head :ok }
       else
-        format.html { render :new }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
+        if @ticket.save
+          format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
+          format.json { render :show, status: :created, location: @ticket }
+        else
+          format.html { render :new }
+          format.json { render json: @ticket.errors, status: :unprocessable_entity }
+        end
       end
+
     end
   end
 
@@ -53,6 +60,7 @@ class TicketsController < ApplicationController
   # PATCH/PUT /tickets/1.json
   def update
     respond_to do |format|
+
       if @ticket.update(ticket_params)
         format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
         format.json { render :show, status: :ok, location: @ticket }
@@ -60,6 +68,7 @@ class TicketsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @ticket.errors, status: :unprocessable_entity }
       end
+
     end
   end
 
