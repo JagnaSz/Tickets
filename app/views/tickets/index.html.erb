@@ -31,6 +31,7 @@
         <td><%= ticket.phone %></td>
         <td><%= ticket.age %></td>
         <td><%= ticket.tickets_number %></td>
+        <td><%= Event.where(id: ticket.event_id).select(:artist).map(&:artist) %></td>
 
 
         <td><%= link_to 'Show', ticket %></td>

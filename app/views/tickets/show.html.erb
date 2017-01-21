@@ -40,6 +40,10 @@
   <%= @ticket.tickets_number %>
 </p>
 
+<p>
+  <strong>Event name:</strong>
+  <%= @event.artist %>
+</p>
 
 <% if current_user.admin? %>
     <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
