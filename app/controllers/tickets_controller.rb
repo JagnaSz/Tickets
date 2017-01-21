@@ -4,7 +4,11 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.all
+    if current_user.admin?
+      @tickets = Ticket.all
+    else
+      @tickets = Ticket.where(user_id: current_user.id)
+    end
   end
 
   # GET /tickets/1
@@ -17,7 +21,7 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   def new
     @ticket = Ticket.new
-    @ticket.name = current_user.name +  ' ' + current_user.last_name
+    @ticket.name = current_user.name + ' ' + current_user.last_name
     @ticket.age = current_user.age
     @ticket.email_address = current_user.email
     @events = Event.all
@@ -70,13 +74,13 @@ class TicketsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ticket
-      @ticket = Ticket.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ticket
+    @ticket = Ticket.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ticket_params
-      params.require(:ticket).permit(:name, :seat_id_seq, :address, :price, :email_address, :phone, :age, :tickets_number, :event_id, :user_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def ticket_params
+    params.require(:ticket).permit(:name, :seat_id_seq, :address, :price, :email_address, :phone, :age, :tickets_number, :event_id, :user_id)
+  end
 end
