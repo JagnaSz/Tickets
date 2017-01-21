@@ -17,7 +17,6 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   def new
     @ticket = Ticket.new
-    @ticket.user_id = current_user.id
     @ticket.name = current_user.name +  ' ' + current_user.last_name
     @ticket.age = current_user.age
     @ticket.email_address = current_user.email
@@ -34,6 +33,7 @@ class TicketsController < ApplicationController
   # POST /tickets.json
   def create
     @ticket = Ticket.new(ticket_params)
+    @ticket.user_id = current_user.id
     respond_to do |format|
       if @ticket.save
         format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }

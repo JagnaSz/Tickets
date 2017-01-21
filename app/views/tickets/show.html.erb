@@ -45,6 +45,11 @@
   <%= @event.artist %>
 </p>
 
+<p>
+  <strong>User id:</strong>
+  <%= @ticket.user_id %>
+</p>
+
 <% if current_user.admin? %>
     <%= link_to 'Edit', edit_ticket_path(@ticket) %> |
 <% end %>
