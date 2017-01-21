@@ -26,15 +26,20 @@
         <td><%= event.tickets.count %></td>
         <td><%= event.seats_number %></td>
         <td><%= event.for_adults %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.admin? %>
+            <td><%= link_to 'Edit', edit_event_path(event) %></td>
+            <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+
       </tr>
   <% end %>
   </tbody>
 </table>
 
+<% if current_user.admin? %>
+    <%= link_to 'Nowy Event', new_event_path %>
+<% end %>
 
-<%= link_to 'Nowy Event', new_event_path %>
 
 <br>

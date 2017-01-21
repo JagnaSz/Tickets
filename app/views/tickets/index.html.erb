@@ -28,9 +28,13 @@
         <td><%= ticket.phone %></td>
         <td><%= ticket.age %></td>
         <td><%= ticket.tickets_number %></td>
+
         <td><%= link_to 'Show', ticket %></td>
-        <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-        <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.admin? %>
+            <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+            <td><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+
       </tr>
     <% end %>
   </tbody>
@@ -38,4 +42,7 @@
 
 <br>
 
-<%= link_to 'New Ticket', new_ticket_path %>
+<% if current_user.admin? %>
+    <%= link_to 'New Ticket', new_ticket_path %>
+<% end %>
+

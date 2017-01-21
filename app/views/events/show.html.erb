@@ -30,5 +30,8 @@
   <%= @event.for_adults %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
+<% if current_user.admin? %>
+    <%= link_to 'Edit', edit_event_path(@event) %> |
+<% end %>
+
 <%= link_to 'Back', events_path %>
