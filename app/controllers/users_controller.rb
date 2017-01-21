@@ -10,8 +10,8 @@ class UsersController < ApplicationController
 
     @user = User.new(users_params)
     if @user.save
-      flash[:komunikat] = 'Event został poprawnie stworzony.'
-      # redirect_to
+      flash[:komunikat] = 'Zarejestrowałeś się poprawnie!'
+      redirect_to @user
     else
       render :action => "new"
     end
