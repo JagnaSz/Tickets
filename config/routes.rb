@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # get 'sessions/new'
+
   # get 'users/index'
   #
   # get 'users/new'
@@ -15,15 +17,16 @@ Rails.application.routes.draw do
   resources :tickets
 
   get  '/signup',  to: 'users#new'
-  post '/signup',  to: 'users#create'
-
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  #root :to => "tickets#index"
+  root :to => "tickets#index"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

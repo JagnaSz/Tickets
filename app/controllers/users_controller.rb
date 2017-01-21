@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
     @user = User.new(users_params)
     if @user.save
+      log_in @user
       flash[:komunikat] = 'Zarejestrowałeś się poprawnie!'
       redirect_to @user
     else
