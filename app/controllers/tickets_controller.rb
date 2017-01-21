@@ -15,17 +15,23 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   def new
     @ticket = Ticket.new
+    @ticket.user_id = current_user.id
+    @ticket.name = current_user.name +  ' ' + current_user.last_name
+    @ticket.age = current_user.age
+    @ticket.email_address = current_user.email
+    @events = Event.all
   end
 
   # GET /tickets/1/edit
   def edit
+    @events = Event.all
+
   end
 
   # POST /tickets
   # POST /tickets.json
   def create
     @ticket = Ticket.new(ticket_params)
-
     respond_to do |format|
       if @ticket.save
         format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
@@ -69,6 +75,6 @@ class TicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_params
-      params.require(:ticket).permit(:name, :seat_id_seq, :address, :price, :email_address, :phone, :age, :tickets_number)
+      params.require(:ticket).permit(:name, :seat_id_seq, :address, :price, :email_address, :phone, :age, :tickets_number, :event_id, :user_id)
     end
 end

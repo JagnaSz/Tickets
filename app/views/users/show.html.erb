@@ -20,6 +20,8 @@
       <ul class="nav navbar-nav navbar-right">
 
         <% if logged_in? %>
+            <li><%= link_to "Events", events_path %></li>
+            <li><%= link_to "Tickets", tickets_path%></li>
             <li><%= link_to "Users", users_path %></li>
 
               <% if current_user?(@user) %>
@@ -41,4 +43,7 @@
       </ul>
     </nav>
   </div>
+
 </header>
+
+

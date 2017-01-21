@@ -30,7 +30,7 @@
   <%= @event.for_adults %>
 </p>
 
-<% if current_user.admin? %>
+<% if logged_in? && current_user.admin? %>
     <%= link_to 'Edit', edit_event_path(@event) %> |
 <% end %>
 

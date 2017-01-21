@@ -12,6 +12,11 @@
     <% end %>
 
     <div class="field">
+      <%= f.label :event_id %><br>
+      <%= f.collection_select :event_id, Event.all, :id, :artist,  { :prompt => true } %>
+    </div>
+
+    <div class="field">
       <%= f.label :name %><br>
       <%= f.text_field :name %>
     </div>
