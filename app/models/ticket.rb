@@ -11,5 +11,8 @@ class Ticket < ActiveRecord::Base
 
   belongs_to :event
   belongs_to :user
+
+  SEATS = ['A12','A13', 'A14' , 'B12', 'B13' ,'B14', 'C12','C13' , 'C14' , 'D12' , 'D13'  ,  'D14' ]
+  NOT_TAKEN_SEATS = ['A12','A13', 'A14' , 'B12', 'B13' ,'B14', 'C12','C13' , 'C14' , 'D12' , 'D13'  ,  'D14' ]
 end
 

@@ -43,7 +43,11 @@ class TicketsController < ApplicationController
       if more_than_six_tickets?(@ticket.event_id, current_user.id, @ticket.tickets_number)
         format.html { redirect_to new_ticket_url, :alert => "Nie możesz kupić więcej niż 5 biletów na to wydarzenie! Masz już #{@current_sum} biletów" }
         format.json { head :ok }
+      elsif is_under_adult_age?(current_user.age, @ticket.event_id)
+        format.html { redirect_to new_ticket_url, :alert => 'Event tylko dla dorosłych!!! Masz mniej niż 18 lat' }
+        format.json { head :ok }
       else
+
         if @ticket.save
           format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
           format.json { render :show, status: :created, location: @ticket }
@@ -81,6 +85,7 @@ class TicketsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.
